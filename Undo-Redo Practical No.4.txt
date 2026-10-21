@@ -1,0 +1,52 @@
+
+# Text Editor using Undo and Redo
+
+undo = []
+redo = []
+document = ""
+
+while True:
+    print("\n--- TEXT EDITOR ---")
+    print("1. Make Change")
+    print("2. Undo")
+    print("3. Redo")
+    print("4. Display")
+    print("5. Exit")
+
+    try:
+        choice = int(input("Enter choice: "))
+    except ValueError:
+        print("Please enter a valid number.")
+        continue
+
+    if choice == 1:
+        undo.append(document)
+        document = input("Enter new text: ")
+        redo.clear()
+        print("Text updated successfully.")
+
+    elif choice == 2:
+        if undo:
+            redo.append(document)
+            document = undo.pop()
+            print("Undo successful.")
+        else:
+            print("Nothing to undo.")
+
+    elif choice == 3:
+        if redo:
+            undo.append(document)
+            document = redo.pop()
+            print("Redo successful.")
+        else:
+            print("Nothing to redo.")
+
+    elif choice == 4:
+        print("Document:", document)
+
+    elif choice == 5:
+        print("Program terminated.")
+        break
+
+    else:
+        print("Invalid choice.")
